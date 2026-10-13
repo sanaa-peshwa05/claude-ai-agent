@@ -7,7 +7,8 @@ function App() {
   const [searchBy, setSearchBy] = useState('title');
   const [searchQuery, setSearchQuery] = useState('');
 
-  const API_URL = 'https://psychic-guacamole-6v5x7qr4pjrqcgrg-8000.app.github.dev';
+  // Use an empty string so requests route through the Vite proxy
+  const API_URL = '';
 
   const fetchBooks = async (query = '', field = 'title') => {
     let url = `${API_URL}/books`;
@@ -37,7 +38,6 @@ function App() {
     }
 
     if (editingIsbn) {
-      // Update existing book
       try {
         const res = await fetch(`${API_URL}/books/${editingIsbn}`, {
           method: 'PUT',
@@ -57,7 +57,6 @@ function App() {
         alert('Failed to update book.');
       }
     } else {
-      // Add new book
       try {
         const res = await fetch(`${API_URL}/books`, {
           method: 'POST',
@@ -274,7 +273,6 @@ function App() {
       <div style={styles.card}>
         <h1 style={styles.title}>📖 Smart Library System</h1>
 
-        {/* Add / Edit Form Box */}
         <div style={styles.formBox}>
           <h3 style={{ marginTop: 0, color: editingIsbn ? '#c05621' : '#2b6cb0' }}>
             {editingIsbn ? '✏️ Edit Book Details' : '➕ Add New Book'}
@@ -332,7 +330,6 @@ function App() {
           </form>
         </div>
 
-        {/* High / Low Cost Summary */}
         {books.length > 0 && (
           <div style={styles.statsBox}>
             <p style={{ margin: '4px 0' }}>
@@ -344,25 +341,23 @@ function App() {
           </div>
         )}
 
-        {/* Search Bar */}
-<form onSubmit={handleSearch} style={styles.searchBox}>
-  <select style={styles.select} value={searchBy} onChange={(e) => setSearchBy(e.target.value)}>
-    <option value="title">Search by Title</option>
-    <option value="author">Search by Author</option>
-    <option value="publisher">Search by Publisher</option>
-    <option value="isbn">Search by ISBN</option>
-  </select>
-  <input
-    style={{ ...styles.input, flex: 1 }}
-    placeholder="Type keyword to search..."
-    value={searchQuery}
-    onChange={(e) => setSearchQuery(e.target.value)}
-  />
-  <button type="submit" style={styles.btnSearch}>Search</button>
-  <button type="button" onClick={handleResetSearch} style={styles.btnReset}>Reset</button>
-</form>
+        <form onSubmit={handleSearch} style={styles.searchBox}>
+          <select style={styles.select} value={searchBy} onChange={(e) => setSearchBy(e.target.value)}>
+            <option value="title">Search by Title</option>
+            <option value="author">Search by Author</option>
+            <option value="publisher">Search by Publisher</option>
+            <option value="isbn">Search by ISBN</option>
+          </select>
+          <input
+            style={{ ...styles.input, flex: 1 }}
+            placeholder="Type keyword to search..."
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
+          <button type="submit" style={styles.btnSearch}>Search</button>
+          <button type="button" onClick={handleResetSearch} style={styles.btnReset}>Reset</button>
+        </form>
 
-        {/* Books Table */}
         <h3 style={{ color: '#1e1e1f' }}>📚 Book Records ({books.length})</h3>
         <table style={styles.table}>
           <thead>
@@ -379,7 +374,7 @@ function App() {
             {books.length === 0 ? (
               <tr>
                 <td colSpan="6" style={{ ...styles.td, textAlign: 'center', padding: '20px' }}>
-                  No books found in records.
+                  No books found in records. Ensure your backend server is running!
                 </td>
               </tr>
             ) : (

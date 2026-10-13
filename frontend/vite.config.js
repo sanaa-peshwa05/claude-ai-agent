@@ -5,7 +5,8 @@ export default defineConfig({
   plugins: [react()],
   server: {
     proxy: {
-      '/api': 'http://localhost:8000'
+      '/books': 'http://localhost:8000',
+      '/export-excel': 'http://localhost:8000'
     }
   }
 })
