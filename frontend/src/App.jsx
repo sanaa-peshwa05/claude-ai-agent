@@ -8,7 +8,7 @@ function App() {
   const [searchQuery, setSearchQuery] = useState('');
 
   // Use an empty string so requests route through the Vite proxy
-  const API_URL = '';
+  const API_URL = 'https://smart-library-backend-y0a8.onrender.com';
 
   const fetchBooks = async (query = '', field = 'title') => {
     let url = `${API_URL}/books`;
