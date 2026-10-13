@@ -271,7 +271,7 @@ function App() {
   return (
     <div style={styles.container}>
       <div style={styles.card}>
-        <h1 style={styles.title}>📖 Smart Library System</h1>
+        <h1 style={styles.title}>📖 Sarasbaug Library System</h1>
 
         <div style={styles.formBox}>
           <h3 style={{ marginTop: 0, color: editingIsbn ? '#c05621' : '#2b6cb0' }}>
@@ -312,7 +312,7 @@ function App() {
                 style={styles.input}
                 name="cost"
                 type="number"
-                placeholder="Cost ($)"
+                placeholder="Cost (₹)"
                 value={form.cost}
                 onChange={handleChange}
               />
@@ -333,10 +333,10 @@ function App() {
         {books.length > 0 && (
           <div style={styles.statsBox}>
             <p style={{ margin: '4px 0' }}>
-              💎 <strong>Highest Cost Book:</strong> {highest?.title} (${highest?.cost})
+              💎 <strong>Highest Cost Book:</strong> {highest?.title} (₹{highest?.cost})
             </p>
             <p style={{ margin: '4px 0' }}>
-              🏷️ <strong>Lowest Cost Book:</strong> {lowest?.title} (${lowest?.cost})
+              🏷️ <strong>Lowest Cost Book:</strong> {lowest?.title} (₹{lowest?.cost})
             </p>
           </div>
         )}
@@ -366,7 +366,7 @@ function App() {
               <th style={styles.th}>Title</th>
               <th style={styles.th}>Author</th>
               <th style={styles.th}>Publisher</th>
-              <th style={styles.th}>Cost ($)</th>
+              <th style={styles.th}>Cost (₹)</th>
               <th style={styles.th}>Actions</th>
             </tr>
           </thead>
@@ -384,7 +384,7 @@ function App() {
                   <td style={{ ...styles.td, fontWeight: '600' }}>{b.title}</td>
                   <td style={styles.td}>{b.author}</td>
                   <td style={styles.td}>{b.publisher}</td>
-                  <td style={{ ...styles.td, color: '#2b6cb0', fontWeight: 'bold' }}>${b.cost}</td>
+                  <td style={{ ...styles.td, color: '#2b6cb0', fontWeight: 'bold' }}>₹{b.cost}</td>
                   <td style={styles.td}>
                     <button onClick={() => handleEditClick(b)} style={styles.btnEdit}>
                       Edit
